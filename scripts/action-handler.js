@@ -21,7 +21,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             this.actorType = this.actor?.type
 
             // Settings
-            this.displayUnequipped = Utils.getSetting('displayUnequipped')
+            this.displayUnequipped = true; //Utils.getSetting('displayUnequipped')
 
             // Set items variable
             if (this.actor) {
@@ -76,15 +76,20 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
             for (const [type, typeMap] of inventoryMap) {
                 const groupId = ITEM_TYPE[type]?.groupId
+                console.log(type, ITEM_TYPE);
+                console.log('id', groupId);
 
                 if (!groupId) continue
 
                 const groupData = { id: groupId, type: 'system' }
+                console.log(groupData);
 
                 // Get actions
                 const actions = [...typeMap].map(([itemId, itemData]) => {
+                    console.log('itemData', itemData);
                     const id = itemId
                     const name = itemData.name
+                    const img = itemData.img
                     const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
                     const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
                     const encodedValue = [actionTypeId, id].join(this.delimiter)
@@ -92,10 +97,13 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                     return {
                         id,
                         name,
+                        img,
                         listName,
                         encodedValue
                     }
                 })
+
+                console.log('actions', actions);
 
                 // TAH Core method to add actions to the action list
                 this.addActions(actions, groupData)

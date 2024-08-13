@@ -2,7 +2,7 @@
  * Module-based constants
  */
 export const MODULE = {
-    ID: 'token-action-hud-template'
+    ID: 'token-action-hud-13th-age'
 }
 
 /**
@@ -21,6 +21,7 @@ export const REQUIRED_CORE_MODULE_VERSION = '1.5'
  * Action types
  */
 export const ACTION_TYPE = {
+    power: 'tokenActionHud.template.power',
     item: 'tokenActionHud.template.item',
     utility: 'tokenActionHud.utility'
 }
@@ -29,6 +30,7 @@ export const ACTION_TYPE = {
  * Groups
  */
 export const GROUP = {
+    power: { id: 'power', name: 'tokenActionHud.template.power', type: 'system' },
     armor: { id: 'armor', name: 'tokenActionHud.template.armor', type: 'system' },
     equipment: { id: 'equipment', name: 'tokenActionHud.template.equipment', type: 'system' },
     consumables: { id: 'consumables', name: 'tokenActionHud.template.consumables', type: 'system' },
@@ -44,6 +46,7 @@ export const GROUP = {
  * Item types
  */
 export const ITEM_TYPE = {
+    power: { groupId: 'power' },
     armor: { groupId: 'armor' },
     backpack: { groupId: 'containers' },
     consumable: { groupId: 'consumables' },

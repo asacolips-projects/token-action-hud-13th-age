@@ -15,6 +15,14 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     DEFAULTS = {
         layout: [
             {
+                nestId: 'powers',
+                id: 'powers',
+                name: coreModule.api.Utils.i18n('Template.Powers'),
+                groups: [
+                    { ...groups.power, nestId: 'powers_power' }
+                ]
+            },
+            {
                 nestId: 'inventory',
                 id: 'inventory',
                 name: coreModule.api.Utils.i18n('Template.Inventory'),
