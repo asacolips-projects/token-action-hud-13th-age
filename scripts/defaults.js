@@ -17,7 +17,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             {
                 nestId: 'powers',
                 id: 'powers',
-                name: coreModule.api.Utils.i18n('Template.Powers'),
+                name: coreModule.api.Utils.i18n('tokenActionHud13thAge.Powers'),
                 groups: [
                     { ...groups.power, nestId: 'powers_power' }
                 ]
@@ -25,7 +25,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             {
                 nestId: 'inventory',
                 id: 'inventory',
-                name: coreModule.api.Utils.i18n('Template.Inventory'),
+                name: coreModule.api.Utils.i18n('tokenActionHud13thAge.Inventory'),
                 groups: [
                     { ...groups.weapons, nestId: 'inventory_weapons' },
                     { ...groups.armor, nestId: 'inventory_armor' },

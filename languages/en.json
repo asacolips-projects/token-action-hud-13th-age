@@ -1,6 +1,11 @@
 {
+  "tokenActionHud13thAge": {
+    "Powers": "Powers",
+    "Inventory": "Inventory"
+  },
   "tokenActionHud": {
     "template": {
+      "power": "Powers",
       "armor": "Armor",
       "containers": "Containers",
       "consumables": "Consumables",
