@@ -19,7 +19,12 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 id: 'powers',
                 name: coreModule.api.Utils.i18n('tokenActionHud13thAge.Powers'),
                 groups: [
-                    { ...groups.power, nestId: 'powers_power' }
+                    { ...groups.spell, nestId: 'powers_spell'},
+                    { ...groups.flexible, nestId: 'powers_flexible'},
+                    { ...groups.power, nestId: 'powers_power'},
+                    { ...groups.talent, nestId: 'powers_talent'},
+                    { ...groups.feature, nestId: 'powers_feature'},
+                    { ...groups.other, nestId: 'powers_other'},
                 ]
             },
             {

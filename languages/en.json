@@ -6,6 +6,11 @@
   "tokenActionHud": {
     "template": {
       "power": "Powers",
+      "talent": "Talents",
+      "feature": "Features",
+      "spell": "Spells",
+      "flexible": "Flexible Attacks",
+      "other": "Other",
       "armor": "Armor",
       "containers": "Containers",
       "consumables": "Consumables",

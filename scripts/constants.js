@@ -21,16 +21,28 @@ export const REQUIRED_CORE_MODULE_VERSION = '1.5'
  * Action types
  */
 export const ACTION_TYPE = {
-    power: 'tokenActionHud.template.power',
+    powers: 'tokenActionHud.template.power',
     item: 'tokenActionHud.template.item',
     utility: 'tokenActionHud.utility'
 }
+
+const collapsedByDefault = {
+    settings: {
+        collapse: true,
+    },
+};
 
 /**
  * Groups
  */
 export const GROUP = {
+    spell: { id: 'spell', name: 'tokenActionHud.template.spell', type: 'system' },
+    flexible: { id: 'flexible', name: 'tokenActionHud.template.flexible', type: 'system' },
     power: { id: 'power', name: 'tokenActionHud.template.power', type: 'system' },
+    talent: { id: 'talent', name: 'tokenActionHud.template.talent', type: 'system', ...collapsedByDefault },
+    feature: { id: 'feature', name: 'tokenActionHud.template.feature', type: 'system', ...collapsedByDefault },
+    other: { id: 'other', name: 'tokenActionHud.template.other', type: 'system', ...collapsedByDefault },
+
     armor: { id: 'armor', name: 'tokenActionHud.template.armor', type: 'system' },
     equipment: { id: 'equipment', name: 'tokenActionHud.template.equipment', type: 'system' },
     consumables: { id: 'consumables', name: 'tokenActionHud.template.consumables', type: 'system' },
@@ -46,7 +58,7 @@ export const GROUP = {
  * Item types
  */
 export const ITEM_TYPE = {
-    power: { groupId: 'power' },
+    // power: { groupId: 'power' },
     armor: { groupId: 'armor' },
     backpack: { groupId: 'containers' },
     consumable: { groupId: 'consumables' },

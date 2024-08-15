@@ -25,9 +25,10 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
             // Set items variable
             if (this.actor) {
-                let items = this.actor.items
-                items = coreModule.api.Utils.sortItemsByName(items)
-                this.items = items
+                // let items = this.actor.items
+                // items = coreModule.api.Utils.sortItemsByName(items)
+                this.items = new Map([...this.actor.items.entries()].sort((a, b) => (a[1].sort || 0) - (b[1].sort || 0)));
+                console.log('items', this.items);
             }
 
             if (this.actorType === 'character') {
@@ -62,22 +63,31 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
             const actionTypeId = 'item'
             const inventoryMap = new Map()
+            const powerMap = new Map()
 
             for (const [itemId, itemData] of this.items) {
                 const type = itemData.type
                 const equipped = itemData.equipped
-
-                if (equipped || this.displayUnequipped) {
-                    const typeMap = inventoryMap.get(type) ?? new Map()
-                    typeMap.set(itemId, itemData)
-                    inventoryMap.set(type, typeMap)
+                
+                if (type === 'power') {
+                    const powerType = itemData.system.powerType.value ?? 'other';
+                    const typeMap = powerMap.get(powerType) ?? new Map()
+                    typeMap.set(itemId, itemData);
+                    powerMap.set(powerType, typeMap);
+                }
+                else {
+                    // if (equipped || this.displayUnequipped) {
+                        const typeMap = inventoryMap.get(type) ?? new Map()
+                        typeMap.set(itemId, itemData)
+                        inventoryMap.set(type, typeMap)
+                    // }
                 }
             }
 
             for (const [type, typeMap] of inventoryMap) {
                 const groupId = ITEM_TYPE[type]?.groupId
-                console.log(type, ITEM_TYPE);
-                console.log('id', groupId);
+                // console.log(type, ITEM_TYPE);
+                // console.log('id', groupId);
 
                 if (!groupId) continue
 
@@ -86,17 +96,16 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
                 // Get actions
                 const actions = [...typeMap].map(([itemId, itemData]) => {
-                    console.log('itemData', itemData);
+                    // console.log('itemData', itemData);
                     const id = itemId
                     const name = itemData.name
                     const img = itemData.img
                     const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
                     const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
                     const encodedValue = [actionTypeId, id].join(this.delimiter)
-                    let cssClass = '';
-                    if (itemData.type === 'power') {
-                        cssClass += `power ${Utils.getPowerClasses(itemData.system.powerUsage.value)[0]}`
-                    }
+                    let cssClass = itemData.type === 'power'
+                        ? `power ${Utils.getPowerClasses(itemData.system.powerUsage.value)[0]}`
+                        : '';
 
                     return {
                         id,
@@ -109,9 +118,48 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 })
 
                 console.log('actions', actions);
+                console.log('groupData', groupData);
 
                 // TAH Core method to add actions to the action list
                 this.addActions(actions, groupData)
+            }
+
+            for (const [type, typeMap] of powerMap) {
+
+                const groupData = {id: type, type: 'system'};
+                const actions = [...typeMap].map(([itemId, itemData]) => {
+
+                    const id = itemId
+                    let name = itemData.name
+                    // let icon = '';
+                    const img = itemData.img
+                    const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
+                    const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
+                    const encodedValue = [actionTypeId, id].join(this.delimiter)
+                    let cssClass = `power ${Utils.getPowerClasses(itemData.system.powerUsage.value)[0]}`
+
+                    if (itemData.system.actionType.value) {
+                        name = `${'[' + CONFIG.ARCHMAGE.actionTypesShort?.[itemData.system.actionType.value] + '] '}${name}`;
+                    }
+
+                    if (itemData.system.maxQuantity.value) {
+                        const current = Number(itemData.system.quantity.value ?? 0);
+                        const max = Number(itemData.system.maxQuantity.value ?? 0);
+                        name = `[${current}/${max}] ${name}`;
+                    }
+
+                    return {
+                        id,
+                        name,
+                        // icon,
+                        img,
+                        listName,
+                        encodedValue,
+                        cssClass,
+                    }
+                });
+
+                this.addActions(actions, groupData);
             }
         }
     }
