@@ -93,13 +93,18 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                     const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
                     const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
                     const encodedValue = [actionTypeId, id].join(this.delimiter)
+                    let cssClass = '';
+                    if (itemData.type === 'power') {
+                        cssClass += `power ${Utils.getPowerClasses(itemData.system.powerUsage.value)[0]}`
+                    }
 
                     return {
                         id,
                         name,
                         img,
                         listName,
-                        encodedValue
+                        encodedValue,
+                        cssClass,
                     }
                 })
 

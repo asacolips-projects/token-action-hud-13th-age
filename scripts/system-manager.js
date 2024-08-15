@@ -72,21 +72,21 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             systemSettings.register(coreUpdate)
         }
 
-        /**
-         * Returns styles to Token Action HUD Core
-         * Called by Token Action HUD Core
-         * @override
-         * @returns {object} The TAH system styles
-         */
-        registerStyles () {
-            return {
-                template: {
-                    class: 'tah-style-13th-age-style', // The class to add to first DIV element
-                    file: 'tah-13th-age-style', // The file without the css extension
-                    moduleId: MODULE.ID, // The module ID
-                    name: 'Template Style' // The name to display in the Token Action HUD Core 'Style' module setting
-                }
-            }
-        }
+        // /**
+        //  * Returns styles to Token Action HUD Core
+        //  * Called by Token Action HUD Core
+        //  * @override
+        //  * @returns {object} The TAH system styles
+        //  */
+        // registerStyles () {
+        //     return {
+        //         template: {
+        //             class: 'tah-style-13th-age-style', // The class to add to first DIV element
+        //             file: 'token-action-hud-13th-age', // The file without the css extension
+        //             moduleId: MODULE.ID, // The module ID
+        //             name: '13th Age Style' // The name to display in the Token Action HUD Core 'Style' module setting
+        //         }
+        //     }
+        // }
     }
 })

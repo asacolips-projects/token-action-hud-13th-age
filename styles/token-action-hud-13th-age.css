@@ -1,0 +1,5 @@
+.tah-tab-group .tah-action-button.at-will { background: var(--c-power-will); }
+.tah-tab-group .tah-action-button.once-per-battle { background: var(--c-power-battle); }
+.tah-tab-group .tah-action-button.daily { background: var(--c-power-daily); }
+.tah-tab-group .tah-action-button.recharge { background: var(--c-power-recharge); }
+.tah-tab-group .tah-action-button.other { background: var(--c-power-other); }
