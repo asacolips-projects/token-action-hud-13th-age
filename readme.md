@@ -33,3 +33,7 @@ Pull requests are welcome. Please include a reason for the request or create an 
 # Acknowledgements
 
 Thank you to Larkinabout for providing the [Token Action HUD Core](https://foundryvtt.com/packages/token-action-hud-core) module and the [fvtt-token-action-hud-template](https://github.com/Larkinabout/fvtt-token-action-hud-template) module that this module was forked from.
+
+# License
+
+This Foundry VTT module is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/) and this work is licensed under [Foundry Virtual Tabletop EULA - Limited License Agreement for module development](https://foundryvtt.com/article/license/), per the [fvtt-token-action-hud-template](https://github.com/Larkinabout/fvtt-token-action-hud-template?tab=readme-ov-file#license) module that it's forked from..
