@@ -1,6 +1,14 @@
 # Token Action HUD 13th Age
 
+![Foundry v12](https://img.shields.io/badge/Foundry-v12-green)
+
 13th Age integration for the Token Action HUD module.
+
+# Installation
+
+This module has not yet been approved for the package manager (though that's in progress!), but it can be installed with this manifest URL:
+
+[https://github.com/asacolips-projects/token-action-hud-13th-age/releases/latest/download/module.json](https://github.com/asacolips-projects/token-action-hud-13th-age/releases/latest/download/module.json)
 
 # Features
 - Make rolls directly from the HUD instead of opening your character sheet.
@@ -8,12 +16,6 @@
 - Move the HUD and choose to expand the menus up or down.
 - Unlock the HUD to customise layout and groups per user, and actions per actor.
 - Add your own macros, journal entries and roll table compendiums.
-
-# Installation
-
-This module has not yet been approved for the package manager (though that's in progress!), but it can be installed with this manifest URL:
-
-[https://github.com/asacolips-projects/token-action-hud-13th-age/releases/latest/download/module.json](https://github.com/asacolips-projects/token-action-hud-13th-age/releases/latest/download/module.json)
 
 ## Required Modules
 
