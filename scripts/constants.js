@@ -50,6 +50,10 @@ export const GROUP = {
   equipment: { id: 'equipment', name: 'tokenActionHud.template.equipment', type: 'system' },
   loot: { id: 'loot', name: 'tokenActionHud.template.loot', type: 'system' },
   tool: { id: 'tool', name: 'tokenActionHud.template.tool', type: 'system' },
+
+  action: { id: 'action', name: 'tokenActionHud.template.action', type: 'system' },
+  trait: { id: 'trait', name: 'tokenActionHud.template.trait', type: 'system' },
+  nastierSpecial: { id: 'nastierSpecial', name: 'tokenActionHud.template.nastierSpecial', type: 'system' },
   
   ability: { id: 'ability', name: 'tokenActionHud.template.ability', type: 'system' },
   background: { id: 'background', name: 'tokenActionHud.template.background', type: 'system' },
@@ -74,5 +78,9 @@ export const ITEM_TYPE = {
   armor: { groupId: 'armor' },
   equipment: { groupId: 'equipment' },
   loot: { groupId: 'loot' },
-  tool: { groupId: 'tool' }
+  tool: { groupId: 'tool' },
+
+  action: { groupId: 'action' },
+  trait: { groupId: 'trait' },
+  nastierSpecial: { groupId: 'nastierSpecial' }
 }

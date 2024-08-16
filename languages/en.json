@@ -5,7 +5,8 @@
     "abilities": "Abilities",
     "combat": "Combat",
     "recovery": "Recovery",
-    "effects": "Effects"
+    "effects": "Effects",
+    "actions": "Actions"
   },
   "tokenActionHud": {
     "template": {
@@ -27,6 +28,9 @@
       "saves": "Saves",
       "condition": "Conditions",
       "effect": "Effects",
+      "action": "Actions",
+      "trait": "Traits",
+      "nastierSpecial": "Nastier Specials",
       "settings": {
         "displayUnequipped": {
           "hint": "Choose whether to display unequipped items on the HUD",

@@ -38,6 +38,16 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         ]
       },
       {
+        nestId: 'actions',
+        id: 'actions',
+        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.actions'),
+        groups: [
+          { ...groups.action, nestId: 'actions_action' },
+          { ...groups.trait, nestId: 'actions_trait' },
+          { ...groups.nastierSpecial, nestId: 'actions_nastierSpecial' }
+        ]
+      },
+      {
         nestId: 'abilities',
         id: 'abilities',
         name: coreModule.api.Utils.i18n('tokenActionHud13thAge.abilities'),

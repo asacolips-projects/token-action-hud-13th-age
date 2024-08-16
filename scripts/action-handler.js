@@ -47,6 +47,9 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       // Build character actions.
       if (this.actorType === 'character') {
         this.#buildCharacterActions()
+      }
+      else if (this.actorType === 'npc') {
+        this.#buildNpcActions()
       } else if (!this.actor) {
         this.#buildMultipleTokenActions()
       }
@@ -64,6 +67,10 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       this.#buildInventory();
       this.#buildAbilities();
       this.#buildRecovery();
+    }
+
+    #buildNpcActions () {
+      this.#buildNpcInventory();
     }
 
     /**
@@ -163,6 +170,52 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
           }
         })
 
+        this.addActions(actions, groupData)
+      }
+    }
+
+    /**
+     * Build inventory
+     * @private
+     */
+    async #buildNpcInventory () {
+      if (this.items.size === 0) return
+
+      const actionTypeId = 'item'
+      const actionMap = new Map()
+
+      for (const [itemId, itemData] of this.items) {
+        const type = itemData.type
+        const typeMap = actionMap.get(type) ?? new Map()
+        typeMap.set(itemId, itemData)
+        actionMap.set(type, typeMap)
+      }
+
+      for (const [type, typeMap] of actionMap) {
+        const groupId = ITEM_TYPE[type]?.groupId
+        if (!groupId) continue
+
+        const groupData = { id: groupId, type: 'system' }
+
+        // Get actions
+        const actions = [...typeMap].map(([itemId, itemData]) => {
+          const id = itemId
+          const name = itemData.name
+          const img = itemData.img
+          const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
+          const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
+          const encodedValue = [actionTypeId, id].join(this.delimiter)
+
+          return {
+            id,
+            name,
+            img,
+            listName,
+            encodedValue,
+          }
+        })
+
+        // TAH Core method to add actions to the action list
         this.addActions(actions, groupData)
       }
     }
