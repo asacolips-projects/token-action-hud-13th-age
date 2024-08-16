@@ -11,6 +11,13 @@
         "sourceType": "module"
     },
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 2]
+    },
+    "globals": {
+        "Hooks": false,
+        "CONFIG": false,
+        "game": false,
+        "foundry": false,
+        "canvas": false
     }
 }

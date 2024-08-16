@@ -1,7 +1,9 @@
 {
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -wcm"
+    "dev": "rollup -wcm",
+    "lint": "eslint --ext .js,.cjs,.mjs .",
+    "lint:fix": "eslint --ext .js,.cjs,.mjs --fix ."
   },
   "devDependencies": {
     "@rollup/plugin-multi-entry": "^6.0.0",
