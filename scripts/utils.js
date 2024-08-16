@@ -4,15 +4,15 @@ export let Utils = null
 
 Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
   /**
-     * Utility functions
-     */
+   * Utility functions
+   */
   Utils = class Utils {
     /**
-         * Get setting
-         * @param {string} key               The key
-         * @param {string=null} defaultValue The default value
-         * @returns {string}                 The setting value
-         */
+     * Get setting
+     * @param {string} key               The key
+     * @param {string=null} defaultValue The default value
+     * @returns {string}                 The setting value
+     */
     static getSetting (key, defaultValue = null) {
       let value = defaultValue ?? null
       try {
@@ -24,10 +24,10 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     }
 
     /**
-         * Set setting
-         * @param {string} key   The key
-         * @param {string} value The value
-         */
+     * Set setting
+     * @param {string} key   The key
+     * @param {string} value The value
+     */
     static async setSetting (key, value) {
       try {
         value = await game.settings.set(MODULE.ID, key, value)
@@ -38,14 +38,14 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     }
 
     /**
-         * Retrieve CSS classes for each power type.
-         *
-         * @param {string} inputString
-         *
-         * @returns {array}
-         *   Returns an array with key 0 as the usage string, and key 1 as the
-         *   recharge value.
-         */
+     * Retrieve CSS classes for each power type.
+     *
+     * @param {string} inputString
+     *
+     * @returns {array}
+     *   Returns an array with key 0 as the usage string, and key 1 as the
+     *   recharge value.
+     */
     static getPowerClasses (inputString) {
       // Get the appropriate usage.
       let usage = 'other'

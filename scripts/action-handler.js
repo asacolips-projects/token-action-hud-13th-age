@@ -6,15 +6,15 @@ export let ActionHandler = null
 
 Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
   /**
-     * Extends Token Action HUD Core's ActionHandler class and builds system-defined actions for the HUD
-     */
+   * Extends Token Action HUD Core's ActionHandler class and builds system-defined actions for the HUD
+   */
   ActionHandler = class ActionHandler extends coreModule.api.ActionHandler {
     /**
-         * Build system actions
-         * Called by Token Action HUD Core
-         * @override
-         * @param {array} groupIds
-         */a
+     * Build system actions
+     * Called by Token Action HUD Core
+     * @override
+     * @param {array} groupIds
+     */
     async buildSystemActions (groupIds) {
       // Set actor and token variables
       this.actors = (!this.actor) ? this._getActors() : [this.actor]
@@ -34,25 +34,25 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     }
 
     /**
-         * Build character actions
-         * @private
-         */
+     * Build character actions
+     * @private
+     */
     #buildCharacterActions () {
       this.#buildInventory()
     }
 
     /**
-         * Build multiple token actions
-         * @private
-         * @returns {object}
-         */
+     * Build multiple token actions
+     * @private
+     * @returns {object}
+     */
     #buildMultipleTokenActions () {
     }
 
     /**
-         * Build inventory
-         * @private
-         */
+     * Build inventory
+     * @private
+     */
     async #buildInventory () {
       if (this.items.size === 0) return
 
