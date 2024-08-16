@@ -41,7 +41,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       // Set items variable
       if (this.actor) {
         this.items = new Map([...this.actor.items.entries()].sort((a, b) => (a[1].sort || 0) - (b[1].sort || 0)))
-        console.log('items', this.items)
       }
 
       // Build character actions.
@@ -258,11 +257,9 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       const backgroundTypes = {};
       if (this.actor) {
         Object.entries(this.actor.system.backgrounds).filter((backgroundType) => {
-          console.log('bg', backgroundType);
           return backgroundType[1].isActive.value;
         })
         .forEach((backgroundType) => {
-          console.log('bg2', backgroundType);
           backgroundTypes[backgroundType[0]] = { name: backgroundType[1].name.value };
         });
       }
@@ -400,7 +397,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         const tooltip = game.tokenActionHud13thAge.journals.find(j => j.id == statusEffect.journal)?.description ?? coreModule.api.Utils.i18n(name);
 
         const active = this.actor.effects.find(e => [...e.statuses.values()].includes(id));
-        console.log('effect', active);
         const cssClass = !active || active?.disabled ? 'toggle' : 'toggle active';
 
         conditionActions.push({

@@ -21,13 +21,7 @@ export const REQUIRED_CORE_MODULE_VERSION = '1.5'
  * Action types
  */
 export const ACTION_TYPE = {
-  powers: 'tokenActionHud.template.power',
   item: 'tokenActionHud.template.item',
-  abilities: 'tokenActionHud.template.ability',
-  combat: 'tokenActionHud.template.combat',
-  recovery: 'tokenActionHud.template.recovery',
-  effect: 'tokenActionHud.template.effect',
-  utility: 'tokenActionHud.utility'
 }
 
 const collapsedByDefault = {
@@ -74,12 +68,13 @@ export const GROUP = {
  * Item types
  */
 export const ITEM_TYPE = {
-  // power: { groupId: 'power' },
+  // Character item types.
   armor: { groupId: 'armor' },
   equipment: { groupId: 'equipment' },
   loot: { groupId: 'loot' },
   tool: { groupId: 'tool' },
 
+  // NPC item types.
   action: { groupId: 'action' },
   trait: { groupId: 'trait' },
   nastierSpecial: { groupId: 'nastierSpecial' }
