@@ -62,6 +62,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     #buildCharacterActions () {
       this.#buildInventory();
       this.#buildAbilities();
+      this.#buildRecovery();
     }
 
     /**
@@ -187,10 +188,12 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         const id = abilityType[0];
         const name = abilityType[1].name;
         const encodedValue = [actionType, id].join(this.delimiter);
+        const cssClass = `power recharge`;
         return {
           id,
           name,
           encodedValue,
+          cssClass,
         }
       });
 
@@ -214,15 +217,83 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         const id = backgroundType[0];
         const name = backgroundType[1].name;
         const encodedValue = [actionType, id].join(this.delimiter);
+        const cssClass = `power other`;
+        return {
+          id,
+          name,
+          encodedValue,
+          cssClass
+        }
+      });
+
+      const backgroundGroupData = { id: 'background', type: 'system' };
+      this.addActions(backgroundActions, backgroundGroupData);
+
+      // Icons.
+      // @todo icon relationship rolls are not yet possible using only
+      // the actor document. Revisit this in a later release.
+    }
+
+    #buildRecovery() {
+      if (this.actors.length === 0) return;
+      
+      // Recoveries
+      const recoveryTypes = {
+        recovery: { name: coreModule.api.Utils.i18n('ARCHMAGE.CHARACTER.RESOURCES.recovery')}
+      };
+      const recoveryActions = Object.entries(recoveryTypes).map((recoveryType) => {
+        const recoveries = this.actor.system.attributes.recoveries;
+        const id = recoveryType[0];
+        const name = `[${recoveries.value}/${recoveries.max}] ${recoveryType[1].name} (${recoveries.formula})`;
+        const encodedValue = ['recovery', id].join(this.delimiter);
+        const cssClass = `power at-will`;
+        return {
+          id,
+          name,
+          encodedValue,
+          cssClass,
+        }
+      });
+      this.addActions(recoveryActions, {id: 'recovery', type: 'system'});
+
+      // Resting
+      const restingTypes = {
+        quickRest: { name: coreModule.api.Utils.i18n('ARCHMAGE.CHAT.QuickRest'), usage: 'once-per-battle'},
+        fullHeal: { name: coreModule.api.Utils.i18n('ARCHMAGE.CHAT.FullHeal'), usage: 'daily'}
+      }
+      const restActions = Object.entries(restingTypes).map((restingType) => {
+        const id = restingType[0];
+        const name = restingType[1].name;
+        const encodedValue = ['rest', id].join(this.delimiter);
+        const cssClass = `power ${restingType[1].usage}`;
+        return {
+          id,
+          name,
+          encodedValue,
+          cssClass,
+        }
+      });
+      this.addActions(restActions, {id: 'rest', type: 'system'});
+
+      // Saves
+      const saveTypes = {
+        easy: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.easy')} (6+)`},
+        normal: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.normal')} (11+)`},
+        hard: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.hard')} (16+)`},
+        death: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.death')} (16+)`},
+        lastGasp: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.lastGasp')} (16+)`},
+      }
+      const saveActions = Object.entries(saveTypes).map((saveType) => {
+        const id = saveType[0];
+        const name = saveType[1].name;
+        const encodedValue = ['saves', id].join(this.delimiter);
         return {
           id,
           name,
           encodedValue,
         }
       });
-
-      const backgroundGroupData = { id: 'background', type: 'system' };
-      this.addActions(backgroundActions, backgroundGroupData);
+      this.addActions(saveActions, {id: 'saves', type: 'system'});
     }
 
     /**
@@ -235,6 +306,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
       const combatTypes = {
         initiative: { name: coreModule.api.Utils.i18n('ARCHMAGE.initiative')},
+        disengage: { name: coreModule.api.Utils.i18n('ARCHMAGE.SAVE.disengage')},
         endTurn: { name: coreModule.api.Utils.i18n('tokenActionHud.endTurn')}
       }
 

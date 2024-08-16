@@ -25,6 +25,7 @@ export const ACTION_TYPE = {
   item: 'tokenActionHud.template.item',
   abilities: 'tokenActionHud.template.ability',
   combat: 'tokenActionHud.template.combat',
+  recovery: 'tokenActionHud.template.recovery',
   utility: 'tokenActionHud.utility'
 }
 
@@ -51,6 +52,11 @@ export const GROUP = {
   
   ability: { id: 'ability', name: 'tokenActionHud.template.ability', type: 'system' },
   background: { id: 'background', name: 'tokenActionHud.template.background', type: 'system' },
+  icon: { id: 'icon', name: 'tokenActionHud.template.icon', type: 'system' },
+
+  recovery: { id: 'recovery', name: 'tokenActionHud.template.recovery', type: 'system' },
+  rest: { id: 'rest', name: 'tokenActionHud.template.rest', type: 'system' },
+  saves: { id: 'saves', name: 'tokenActionHud.template.saves', type: 'system' },
   
   combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
   utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' }

@@ -3,7 +3,8 @@
     "powers": "Powers",
     "inventory": "Inventory",
     "abilities": "Abilities",
-    "combat": "Combat"
+    "combat": "Combat",
+    "recovery": "Recovery"
   },
   "tokenActionHud": {
     "template": {
@@ -20,6 +21,9 @@
       "ability": "Abilities",
       "background": "Backgrounds",
       "abilities": "Abilities",
+      "recovery": "Recoveries",
+      "rest": "Resting",
+      "saves": "Saves",
       "settings": {
         "displayUnequipped": {
           "hint": "Choose whether to display unequipped items on the HUD",

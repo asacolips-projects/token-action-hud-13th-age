@@ -74,6 +74,15 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         case 'ability':
           this.#handleAbilityAction(event, actor, actionId)
           break
+        case 'recovery':
+          this.#handleRecoveryAction(event, actor, actionId)
+          break
+        case 'rest':
+          this.#handleRestAction(event, actor, actionId)
+          break
+        case 'saves':
+          this.#handleSavesAction(event, actor, actionId)
+          break
         case 'combat':
           this.#handleCombatAction(token, actionId)
           break
@@ -101,6 +110,31 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       }
     }
 
+    #handleRecoveryAction(event, actor, actionId) {
+      switch (actionId) {
+        case 'recovery':
+          actor.rollRecoveryDialog();
+          break;
+      }
+    }
+
+    #handleRestAction(event, actor, actionId) {
+      switch (actionId) {
+        case 'fullHeal':
+          actor.restFull();
+          break;
+        case 'quickRest':
+          actor.restQuick();
+          break;
+      }
+    }
+
+    #handleSavesAction(event, actor, actionId) {
+      if (['easy', 'normal', 'hard', 'death', 'lastGasp'].includes(actionId)) {
+        actor.rollSave(actionId);
+      }
+    }
+
     /**
      * Handle utility action
      * @private
@@ -108,17 +142,22 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
      * @param {string} actionId The action id
      */
     async #handleCombatAction (token, actionId) {
+      const actor = token.actor;
       switch (actionId) {
         case 'initiative':
-          const actor = token.actor;
-          const combatant = game.combat?.combatants.find(c => c.tokenId == token.id);
-          console.log('actor', actor);
+          let combatant = game.combat?.combatants.find(c => c.tokenId == token.id);
           if (combatant) {
             game.combat.rollInitiative([combatant.id]);
           }
           else {
             actor.rollInitiative({createCombatants: true});
           }
+          break
+
+        case 'disengage':
+          actor.rollDisengage();
+          break;
+
         case 'endTurn':
           if (game.combat?.current?.tokenId === token.id) {
             await game.combat?.nextTurn()

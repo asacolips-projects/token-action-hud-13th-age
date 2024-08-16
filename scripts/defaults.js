@@ -43,7 +43,18 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         name: coreModule.api.Utils.i18n('tokenActionHud13thAge.abilities'),
         groups: [
           { ...groups.ability, nestId: 'abilities_ability' },
-          { ...groups.background, nestId: 'abilities_background' }
+          { ...groups.background, nestId: 'abilities_background' },
+          { ...groups.icon, nestId: 'abilities_icon' },
+        ]
+      },
+      {
+        nestId: 'recovery',
+        id: 'recovery',
+        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.recovery'),
+        groups: [
+          { ...groups.recovery, nestId: 'recovery_recovery' },
+          { ...groups.rest, nestId: 'recovery_rest' },
+          { ...groups.saves, nestId: 'recovery_saves' }
         ]
       },
       {
