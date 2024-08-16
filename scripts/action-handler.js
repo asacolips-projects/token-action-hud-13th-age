@@ -53,6 +53,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
       // Build generic actions.
       this.#buildCombat();
+      this.#buildEffects();
     }
 
     /**
@@ -274,26 +275,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         }
       });
       this.addActions(restActions, {id: 'rest', type: 'system'});
-
-      // Saves
-      const saveTypes = {
-        easy: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.easy')} (6+)`},
-        normal: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.normal')} (11+)`},
-        hard: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.hard')} (16+)`},
-        death: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.death')} (16+)`},
-        lastGasp: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.lastGasp')} (16+)`},
-      }
-      const saveActions = Object.entries(saveTypes).map((saveType) => {
-        const id = saveType[0];
-        const name = saveType[1].name;
-        const encodedValue = ['saves', id].join(this.delimiter);
-        return {
-          id,
-          name,
-          encodedValue,
-        }
-      });
-      this.addActions(saveActions, {id: 'saves', type: 'system'});
     }
 
     /**
@@ -329,9 +310,59 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         }
       });
 
+      // Saves
+      const saveTypes = {
+        easy: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.easy')} (6+)`},
+        normal: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.normal')} (11+)`},
+        hard: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.hard')} (16+)`},
+        death: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.death')} (16+)`},
+        lastGasp: { name: `${coreModule.api.Utils.i18n('ARCHMAGE.SAVE.lastGasp')} (16+)`},
+      }
+      const saveActions = Object.entries(saveTypes).map((saveType) => {
+        const id = saveType[0];
+        const name = saveType[1].name;
+        const encodedValue = ['saves', id].join(this.delimiter);
+        return {
+          id,
+          name,
+          encodedValue,
+        }
+      });
+      this.addActions(saveActions, {id: 'saves', type: 'system'});
       
       const groupData = { id: 'combat', type: 'system' };
       this.addActions(actions, groupData);
+    }
+
+    #buildEffects() {
+      if (this.actors.length === 0) return;
+      const conditionMap = new Map();
+       CONFIG.statusEffects.forEach((effect) => {
+        conditionMap.set(effect.id, effect);
+      });
+
+      const conditionActions = [];
+      CONFIG.statusEffects.forEach((statusEffect) => {
+        const id = statusEffect.id;
+        const name = coreModule.api.Utils.i18n(statusEffect.name);
+        const encodedValue = ['condition', id].join(this.delimiter);
+        const img = statusEffect?.img ?? statusEffect?.icon;
+        const tooltip = game.tokenActionHud13thAge.journals.find(j => j.id == statusEffect.journal)?.description ?? coreModule.api.Utils.i18n(name);
+
+        const active = this.actor.effects.find(e => [...e.statuses.values()].includes(id));
+        console.log('effect', active);
+        const cssClass = !active || active?.disabled ? 'toggle' : 'toggle active';
+
+        conditionActions.push({
+          id,
+          name,
+          encodedValue,
+          cssClass,
+          img,
+          tooltip,
+        });
+      });
+      this.addActions(conditionActions, {id: 'condition', type: 'system'});
     }
   }
 })

@@ -86,6 +86,9 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         case 'combat':
           this.#handleCombatAction(token, actionId)
           break
+        case 'condition':
+          this.#handleEffectAction(event, actor, actionTypeId, actionId)
+          break;
       }
     }
 
@@ -165,5 +168,43 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
           break
       }
     }
+
+    #handleEffectAction(event, actor, actionTypeId, actionId) {
+      let updated = false;
+      if (actionTypeId === 'condition') {
+        let status = actor.effects.find(e => [...e.statuses.values()].includes(actionId));
+        // Toggle existing conditions.
+        if (status) {
+          status.update({disabled: !status.disabled});
+          updated = true;
+        }
+        // Add missing conditions.
+        else {
+          status = CONFIG.statusEffects.find(e => e.id === actionId);
+          const effectData = foundry.utils.duplicate(status);
+          effectData.label = game.i18n.localize(status.name);
+          effectData.name = effectData.label;
+          effectData.statuses = [actionId];
+          if (status) {
+            actor.createEmbeddedDocuments('ActiveEffect', [effectData]);
+            updated = true;
+          }
+        }
+      }
+
+      if (actionTypeId === 'effect') {
+        // @todo
+      }
+
+      // Update the DOM for the class.
+      if (updated) {
+        const target = event?.target ?? event?.currentTarget;
+        const button = target.closest('.toggle');
+        if (button) {
+          button.classList.toggle('active');
+        }
+      }
+    }
+
   }
 })

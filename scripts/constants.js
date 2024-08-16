@@ -26,6 +26,7 @@ export const ACTION_TYPE = {
   abilities: 'tokenActionHud.template.ability',
   combat: 'tokenActionHud.template.combat',
   recovery: 'tokenActionHud.template.recovery',
+  effect: 'tokenActionHud.template.effect',
   utility: 'tokenActionHud.utility'
 }
 
@@ -59,7 +60,10 @@ export const GROUP = {
   saves: { id: 'saves', name: 'tokenActionHud.template.saves', type: 'system' },
   
   combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
-  utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' }
+  utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' },
+
+  effect: { id: 'effect', name: 'tokenActionHud.template.effect', type: 'system' },
+  condition: { id: 'condition', name: 'tokenActionHud.template.condition', type: 'system' }
 }
 
 /**

@@ -11,4 +11,16 @@ Hooks.on('tokenActionHudCoreApiReady', async () => {
     SystemManager
   }
   Hooks.call('tokenActionHudSystemReady', module)
+
+  game.tokenActionHud13thAge = {};
+  game.packs.get('archmage.conditions').getDocuments().then(journals => {
+    game.tokenActionHud13thAge.journals = journals.map(j => {
+      return {
+        id: j.id,
+        uuid: j.uuid,
+        name: j.name,
+        description: [...j.pages.values()][0]?.text?.content ?? '',
+      };
+    });
+  });
 })

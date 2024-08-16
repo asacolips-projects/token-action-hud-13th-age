@@ -54,7 +54,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         groups: [
           { ...groups.recovery, nestId: 'recovery_recovery' },
           { ...groups.rest, nestId: 'recovery_rest' },
-          { ...groups.saves, nestId: 'recovery_saves' }
         ]
       },
       {
@@ -63,6 +62,16 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         name: coreModule.api.Utils.i18n('tokenActionHud13thAge.combat'),
         groups: [
           { ...groups.combat, nestId: 'combat_combat' },
+          { ...groups.saves, nestId: 'combat_saves' }
+        ]
+      },
+      {
+        nestId: 'effects',
+        id: 'effects',
+        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.effects'),
+        groups: [
+          { ...groups.condition, nestId: 'effects_condition' },
+          { ...groups.effect, nestId: 'effects_effect' }
         ]
       },
       {
