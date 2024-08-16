@@ -32,12 +32,9 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 id: 'inventory',
                 name: coreModule.api.Utils.i18n('tokenActionHud13thAge.Inventory'),
                 groups: [
-                    { ...groups.weapons, nestId: 'inventory_weapons' },
-                    { ...groups.armor, nestId: 'inventory_armor' },
                     { ...groups.equipment, nestId: 'inventory_equipment' },
-                    { ...groups.consumables, nestId: 'inventory_consumables' },
-                    { ...groups.containers, nestId: 'inventory_containers' },
-                    { ...groups.treasure, nestId: 'inventory_treasure' }
+                    { ...groups.loot, nestId: 'inventory_loot' },
+                    { ...groups.tool, nestId: 'inventory_tool' },
                 ]
             },
             {

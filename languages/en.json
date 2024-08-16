@@ -11,14 +11,10 @@
       "spell": "Spells",
       "flexible": "Flexible Attacks",
       "other": "Other",
-      "armor": "Armor",
-      "containers": "Containers",
-      "consumables": "Consumables",
       "equipment": "Equipment",
       "inventory": "Inventory",
-      "item": "Item",
-      "weapons": "Weapons",
-      "treasure": "Treasure",
+      "loot": "Loot",
+      "tool": "Tools",
       "settings": {
         "displayUnequipped": {
           "hint": "Choose whether to display unequipped items on the HUD",

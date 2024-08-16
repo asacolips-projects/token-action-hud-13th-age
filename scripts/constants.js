@@ -43,14 +43,10 @@ export const GROUP = {
     feature: { id: 'feature', name: 'tokenActionHud.template.feature', type: 'system', ...collapsedByDefault },
     other: { id: 'other', name: 'tokenActionHud.template.other', type: 'system', ...collapsedByDefault },
 
-    armor: { id: 'armor', name: 'tokenActionHud.template.armor', type: 'system' },
     equipment: { id: 'equipment', name: 'tokenActionHud.template.equipment', type: 'system' },
-    consumables: { id: 'consumables', name: 'tokenActionHud.template.consumables', type: 'system' },
-    containers: { id: 'containers', name: 'tokenActionHud.template.containers', type: 'system' },
-    treasure: { id: 'treasure', name: 'tokenActionHud.template.treasure', type: 'system' },
-    weapons: { id: 'weapons', name: 'tokenActionHud.template.weapons', type: 'system' },
+    loot: { id: 'loot', name: 'tokenActionHud.template.loot', type: 'system' },
+    tool: { id: 'tool', name: 'tokenActionHud.template.tool', type: 'system' },
     combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
-    token: { id: 'token', name: 'tokenActionHud.token', type: 'system' },
     utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' }
 }
 
@@ -60,9 +56,7 @@ export const GROUP = {
 export const ITEM_TYPE = {
     // power: { groupId: 'power' },
     armor: { groupId: 'armor' },
-    backpack: { groupId: 'containers' },
-    consumable: { groupId: 'consumables' },
     equipment: { groupId: 'equipment' },
-    treasure: { groupId: 'treasure' },
-    weapon: { groupId: 'weapons' }
+    loot: { groupId: 'loot' },
+    tool: { groupId: 'tool' },
 }
