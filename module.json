@@ -8,7 +8,7 @@
       "url": "https://github.com/Asacolips"
     }
   ],
-  "url": "This is auto replaced",
+  "url": "https://github.com/asacolips-projects/token-action-hud-13th-age",
   "flags": {},
   "version": "1.0.0",
   "compatibility": {
@@ -64,8 +64,8 @@
     }
   },
   "socket": false,
-  "manifest": "This is auto replaced",
-  "download": "This is auto replaced",
+  "manifest": "https://raw.githubusercontent.com/asacolips-projects/token-action-hud-13th-age/main/module.json",
+  "download": "https://github.com/asacolips-projects/token-action-hud-13th-age/archive/refs/heads/main.zip",
   "readme": "https://github.com/asacolips-projects/token-action-hud-13th-age#readme",
   "protected": false,
   "coreTranslation": false,
