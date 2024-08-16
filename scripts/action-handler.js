@@ -336,11 +336,8 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
     #buildEffects() {
       if (this.actors.length === 0) return;
-      const conditionMap = new Map();
-       CONFIG.statusEffects.forEach((effect) => {
-        conditionMap.set(effect.id, effect);
-      });
-
+      
+      // Conditions.
       const conditionActions = [];
       CONFIG.statusEffects.forEach((statusEffect) => {
         const id = statusEffect.id;
@@ -363,6 +360,33 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         });
       });
       this.addActions(conditionActions, {id: 'condition', type: 'system'});
+
+      // Custom effects.
+      if (this.actor) {
+        const effectActions = [];
+        this.actor.effects.entries().forEach((effect) => {
+          // Avoid status effects, which are covered by the conditions.
+          if (effect[1].statuses.size > 0) {
+            return;
+          }
+
+          const id = effect[0];
+          const name = effect[1].name;
+          const encodedValue = ['effect', id].join(this.delimiter);
+          const img = effect[1]?.img ?? effect[1]?.icon;
+          const active = !effect[1].disabled;
+          const cssClass = !active || active?.disabled ? 'toggle' : 'toggle active';
+
+          effectActions.push({
+            id,
+            name,
+            encodedValue,
+            cssClass,
+            img,
+          });
+        });
+        this.addActions(effectActions, {id: 'effect', type: 'system'});
+      }
     }
   }
 })

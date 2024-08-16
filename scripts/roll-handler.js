@@ -89,6 +89,9 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         case 'condition':
           this.#handleEffectAction(event, actor, actionTypeId, actionId)
           break;
+        case 'effect':
+          this.#handleEffectAction(event, actor, actionTypeId, actionId)
+          break;
       }
     }
 
@@ -193,7 +196,11 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       }
 
       if (actionTypeId === 'effect') {
-        // @todo
+        const effect = actor.effects.get(actionId);
+        if (effect) {
+          effect.update({disabled: !effect.disabled});
+          updated = true;
+        }
       }
 
       // Update the DOM for the class.
