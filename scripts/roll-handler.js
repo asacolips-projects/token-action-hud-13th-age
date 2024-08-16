@@ -68,12 +68,15 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
      */
     async #handleAction (event, actor, token, actionTypeId, actionId) {
       switch (actionTypeId) {
-      case 'item':
-        this.#handleItemAction(event, actor, actionId)
-        break
-      case 'utility':
-        this.#handleUtilityAction(token, actionId)
-        break
+        case 'item':
+          this.#handleItemAction(event, actor, actionId)
+          break
+        case 'ability':
+          this.#handleAbilityAction(event, actor, actionId)
+          break
+        case 'combat':
+          this.#handleCombatAction(token, actionId)
+          break
       }
     }
 
@@ -89,19 +92,38 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       item.roll(event)
     }
 
+    #handleAbilityAction(event, actor, actionId) {
+      if (['str','dex','con','int','wis','cha'].includes(actionId)) {
+        actor.rollAbility(actionId);
+      }
+      else if (actor.system.backgrounds?.[actionId]) {
+        actor.rollAbility(null, actor.system.backgrounds[actionId].name.value);
+      }
+    }
+
     /**
      * Handle utility action
      * @private
      * @param {object} token    The token
      * @param {string} actionId The action id
      */
-    async #handleUtilityAction (token, actionId) {
+    async #handleCombatAction (token, actionId) {
       switch (actionId) {
-      case 'endTurn':
-        if (game.combat?.current?.tokenId === token.id) {
-          await game.combat?.nextTurn()
-        }
-        break
+        case 'initiative':
+          const actor = token.actor;
+          const combatant = game.combat?.combatants.find(c => c.tokenId == token.id);
+          console.log('actor', actor);
+          if (combatant) {
+            game.combat.rollInitiative([combatant.id]);
+          }
+          else {
+            actor.rollInitiative({createCombatants: true});
+          }
+        case 'endTurn':
+          if (game.combat?.current?.tokenId === token.id) {
+            await game.combat?.nextTurn()
+          }
+          break
       }
     }
   }

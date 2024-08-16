@@ -17,7 +17,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       {
         nestId: 'powers',
         id: 'powers',
-        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.Powers'),
+        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.powers'),
         groups: [
           { ...groups.spell, nestId: 'powers_spell' },
           { ...groups.flexible, nestId: 'powers_flexible' },
@@ -30,7 +30,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       {
         nestId: 'inventory',
         id: 'inventory',
-        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.Inventory'),
+        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.inventory'),
         groups: [
           { ...groups.equipment, nestId: 'inventory_equipment' },
           { ...groups.loot, nestId: 'inventory_loot' },
@@ -38,13 +38,27 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         ]
       },
       {
+        nestId: 'abilities',
+        id: 'abilities',
+        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.abilities'),
+        groups: [
+          { ...groups.ability, nestId: 'abilities_ability' },
+          { ...groups.background, nestId: 'abilities_background' }
+        ]
+      },
+      {
+        nestId: 'combat',
+        id: 'combat',
+        name: coreModule.api.Utils.i18n('tokenActionHud13thAge.combat'),
+        groups: [
+          { ...groups.combat, nestId: 'combat_combat' },
+        ]
+      },
+      {
         nestId: 'utility',
         id: 'utility',
         name: coreModule.api.Utils.i18n('tokenActionHud.utility'),
         groups: [
-          { ...groups.combat, nestId: 'utility_combat' },
-          { ...groups.token, nestId: 'utility_token' },
-          { ...groups.rests, nestId: 'utility_rests' },
           { ...groups.utility, nestId: 'utility_utility' }
         ]
       }

@@ -1,7 +1,9 @@
 {
   "tokenActionHud13thAge": {
-    "Powers": "Powers",
-    "Inventory": "Inventory"
+    "powers": "Powers",
+    "inventory": "Inventory",
+    "abilities": "Abilities",
+    "combat": "Combat"
   },
   "tokenActionHud": {
     "template": {
@@ -15,6 +17,9 @@
       "inventory": "Inventory",
       "loot": "Loot",
       "tool": "Tools",
+      "ability": "Abilities",
+      "background": "Backgrounds",
+      "abilities": "Abilities",
       "settings": {
         "displayUnequipped": {
           "hint": "Choose whether to display unequipped items on the HUD",

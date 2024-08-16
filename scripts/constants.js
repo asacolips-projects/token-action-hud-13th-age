@@ -23,6 +23,8 @@ export const REQUIRED_CORE_MODULE_VERSION = '1.5'
 export const ACTION_TYPE = {
   powers: 'tokenActionHud.template.power',
   item: 'tokenActionHud.template.item',
+  abilities: 'tokenActionHud.template.ability',
+  combat: 'tokenActionHud.template.combat',
   utility: 'tokenActionHud.utility'
 }
 
@@ -46,6 +48,10 @@ export const GROUP = {
   equipment: { id: 'equipment', name: 'tokenActionHud.template.equipment', type: 'system' },
   loot: { id: 'loot', name: 'tokenActionHud.template.loot', type: 'system' },
   tool: { id: 'tool', name: 'tokenActionHud.template.tool', type: 'system' },
+  
+  ability: { id: 'ability', name: 'tokenActionHud.template.ability', type: 'system' },
+  background: { id: 'background', name: 'tokenActionHud.template.background', type: 'system' },
+  
   combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
   utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' }
 }
