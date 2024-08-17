@@ -1,5 +1,5 @@
 // System Module Imports
-import { ACTION_TYPE, ITEM_TYPE } from './constants.js'
+import { ACTION_TYPE, ITEM_TYPE, GROUP } from './constants.js'
 import { Utils } from './utils.js'
 
 export let ActionHandler = null
@@ -95,7 +95,10 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         const type = itemData.type
 
         if (type === 'power') {
-          const powerType = itemData.system.powerType.value ?? 'other'
+          let powerType = itemData.system.powerType.value ?? 'other'
+          if (!Object.keys(GROUP).includes(powerType)) {
+            powerType = 'other';
+          }
           const typeMap = powerMap.get(powerType) ?? new Map()
           typeMap.set(itemId, itemData)
           powerMap.set(powerType, typeMap)
@@ -413,17 +416,18 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       // Custom effects.
       if (this.actor) {
         const effectActions = [];
-        this.actor.effects?.entries()?.forEach((effect) => {
+        const effects = this.actor.effects.toObject();
+        effects?.forEach((effect) => {
           // Avoid status effects, which are covered by the conditions.
-          if (effect[1].statuses.size > 0) {
+          if (effect.statuses.length > 0) {
             return;
           }
 
-          const id = effect[0];
-          const name = effect[1].name;
+          const id = effect._id;
+          const name = effect.name;
           const encodedValue = ['effect', id].join(this.delimiter);
-          const img = effect[1]?.img ?? effect[1]?.icon;
-          const active = !effect[1].disabled;
+          const img = effect?.img ?? effect?.icon;
+          const active = !effect.disabled;
           const cssClass = !active || active?.disabled ? 'toggle' : 'toggle active';
 
           effectActions.push({
