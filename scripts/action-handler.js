@@ -157,7 +157,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
           let info2 = {};
 
           if (itemData.system.actionType.value) {
-            name = `${'[' + CONFIG.ARCHMAGE.actionTypesShort?.[itemData.system.actionType.value] + '] '}${name}`
             info1 = {
               class: 'action-tag action-power-type',
               text: CONFIG.ARCHMAGE.actionTypesShort?.[itemData.system.actionType.value],
