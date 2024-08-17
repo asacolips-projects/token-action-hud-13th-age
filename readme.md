@@ -1,6 +1,6 @@
 # Token Action HUD 13th Age
 
-![Foundry v12](https://img.shields.io/badge/Foundry-v12-green)
+![Foundry v11](https://img.shields.io/badge/Foundry-v11.315-green) ![Foundry v12](https://img.shields.io/badge/Foundry-v12-green)
 
 13th Age integration for the Token Action HUD module.
 
