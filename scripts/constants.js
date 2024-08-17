@@ -57,6 +57,7 @@ export const GROUP = {
   rest: { id: 'rest', name: 'tokenActionHud.template.rest', type: 'system' },
   saves: { id: 'saves', name: 'tokenActionHud.template.saves', type: 'system' },
   
+  attacks: { id: 'attacks', name: 'tokenActionHud.template.attacks', type: 'system' },
   combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
   utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' },
 

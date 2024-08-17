@@ -141,6 +141,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         this.addActions(actions, groupData)
       }
 
+      const combatActions = [];
       for (const [type, typeMap] of powerMap) {
         const groupData = { id: type, type: 'system' }
         const actions = [...typeMap].map(([itemId, itemData]) => {
@@ -148,31 +149,56 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
           let name = itemData.name
           const img = itemData.img
           const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
-          const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
+          const listName = name
           const encodedValue = [actionTypeId, id].join(this.delimiter)
           const cssClass = `power ${Utils.getPowerClasses(itemData.system.powerUsage.value)[0]}`
 
+          let info1 = {};
+          let info2 = {};
+
           if (itemData.system.actionType.value) {
             name = `${'[' + CONFIG.ARCHMAGE.actionTypesShort?.[itemData.system.actionType.value] + '] '}${name}`
+            info1 = {
+              class: 'action-tag action-power-type',
+              text: CONFIG.ARCHMAGE.actionTypesShort?.[itemData.system.actionType.value],
+            }
           }
 
           if (itemData.system.maxQuantity.value) {
             const current = Number(itemData.system.quantity.value ?? 0)
             const max = Number(itemData.system.maxQuantity.value ?? 0)
-            name = `[${current}/${max}] ${name}`
+            info2 = {
+              class: 'action-tag action-uses',
+              text: `${current}/${max}`,
+            };
           }
 
-          return {
+          const result = {
             id,
             name,
             img,
             listName,
             encodedValue,
-            cssClass
+            cssClass,
+            info1,
           }
+
+          if (info1?.text) result.info1 = info1;
+          if (info2?.text) result.info2 = info2;
+
+          // If this is a basic attack, skip adding to powers and add to combat instead.
+          if (itemData.system.powerUsage.value == 'at-will' && result.name.toLowerCase().match(/(melee|ranged) attack \(.*\)/g)) {
+            combatActions.push(result);
+            return false;
+          }
+
+          return result;
         })
 
         this.addActions(actions, groupData)
+        if (combatActions.length > 0) {
+          this.addActions(combatActions, {id: 'attacks', type: 'system'});
+        }
       }
     }
 
@@ -298,15 +324,37 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       const recoveryActions = Object.entries(recoveryTypes).map((recoveryType) => {
         const recoveries = this.actor.system.attributes.recoveries;
         const id = recoveryType[0];
-        const name = `[${recoveries.value}/${recoveries.max}] ${recoveryType[1].name} (${recoveries.formula})`;
+        const name = recoveryType[1].name;
         const encodedValue = ['recovery', id].join(this.delimiter);
         const cssClass = `power at-will`;
-        return {
+
+        let info1 = {};
+        if (recoveries?.formula) {
+          info1 = {
+            class: 'action-tag action-dice-formula',
+            text: recoveries.formula,
+          };
+        }
+
+        let info2 = {};
+        if (recoveries?.value) {
+          info2 = {
+            class: 'action-tag action-uses',
+            text: `${recoveries.value}/${recoveries.max}`,
+          };
+        }
+
+        const result = {
           id,
           name,
           encodedValue,
           cssClass,
         }
+
+        if (info1?.text) result.info1 = info1;
+        if (info2?.text) result.info2 = info2;
+
+        return result;
       });
       this.addActions(recoveryActions, {id: 'recovery', type: 'system'});
 

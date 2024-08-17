@@ -4,3 +4,21 @@
 .tah-tab-group .tah-action-button.daily { background: var(--c-power-daily); }
 .tah-tab-group .tah-action-button.recharge { background: var(--c-power-recharge); }
 .tah-tab-group .tah-action-button.other { background: var(--c-power-other); }
+
+.tah-tab-group {
+  .action-tag {
+    color: white;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(0,0,0,0.35);
+    padding: 0 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    height: 18px;
+    line-height: 18px;
+  }
+
+  .tah-subtitle-text {
+    background: rgba(0,0,0,0.5);
+    padding: 3px 6px;
+  }
+}
