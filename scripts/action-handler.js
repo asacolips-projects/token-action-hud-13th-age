@@ -413,7 +413,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       // Custom effects.
       if (this.actor) {
         const effectActions = [];
-        this.actor.effects.entries().forEach((effect) => {
+        this.actor.effects?.entries()?.forEach((effect) => {
           // Avoid status effects, which are covered by the conditions.
           if (effect[1].statuses.size > 0) {
             return;
