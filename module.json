@@ -38,7 +38,7 @@
         "type": "system",
         "compatibility": [
           {
-            "minimum": "1.31.1",
+            "minimum": "1.31.0",
             "verified": "1.31.1"
           }
         ]
