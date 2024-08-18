@@ -31,6 +31,7 @@
       "action": "Actions",
       "trait": "Traits",
       "nastierSpecial": "Nastier Specials",
+      "attacks": "Basic Attacks",
       "settings": {
         "displayUnequipped": {
           "hint": "Choose whether to display unequipped items on the HUD",

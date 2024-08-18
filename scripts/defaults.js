@@ -71,6 +71,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         id: 'combat',
         name: coreModule.api.Utils.i18n('tokenActionHud13thAge.combat'),
         groups: [
+          { ...groups.attacks, nestId: 'combat_attacks' },
           { ...groups.combat, nestId: 'combat_combat' },
           { ...groups.saves, nestId: 'combat_saves' }
         ]
