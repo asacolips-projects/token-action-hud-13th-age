@@ -388,7 +388,10 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       const combatTypes = {
         initiative: { name: coreModule.api.Utils.i18n('ARCHMAGE.initiative')},
         disengage: { name: coreModule.api.Utils.i18n('ARCHMAGE.SAVE.disengage')},
-        endTurn: { name: coreModule.api.Utils.i18n('tokenActionHud.endTurn')}
+      }
+
+      if (this.actors.length === 1) {
+        combatTypes.endTurn = { name: coreModule.api.Utils.i18n('tokenActionHud.endTurn')};
       }
 
       // Remove initiative if the actor already has it.
@@ -435,7 +438,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     }
 
     #buildEffects() {
-      if (this.actors.length === 0) return;
+      if (this.actors.length !== 1) return;
       
       // Conditions.
       const conditionActions = [];
