@@ -15,7 +15,7 @@ export const CORE_MODULE = {
 /**
  * Core module version required by the system module
  */
-export const REQUIRED_CORE_MODULE_VERSION = '1.5'
+export const REQUIRED_CORE_MODULE_VERSION = '2.0'
 
 /**
  * Action types
@@ -48,7 +48,7 @@ export const GROUP = {
   action: { id: 'action', name: 'tokenActionHud.template.action', type: 'system' },
   trait: { id: 'trait', name: 'tokenActionHud.template.trait', type: 'system' },
   nastierSpecial: { id: 'nastierSpecial', name: 'tokenActionHud.template.nastierSpecial', type: 'system' },
-  
+
   ability: { id: 'ability', name: 'tokenActionHud.template.ability', type: 'system' },
   background: { id: 'background', name: 'tokenActionHud.template.background', type: 'system' },
   icon: { id: 'icon', name: 'tokenActionHud.template.icon', type: 'system' },
@@ -56,7 +56,7 @@ export const GROUP = {
   recovery: { id: 'recovery', name: 'tokenActionHud.template.recovery', type: 'system' },
   rest: { id: 'rest', name: 'tokenActionHud.template.rest', type: 'system' },
   saves: { id: 'saves', name: 'tokenActionHud.template.saves', type: 'system' },
-  
+
   attacks: { id: 'attacks', name: 'tokenActionHud.template.attacks', type: 'system' },
   combat: { id: 'combat', name: 'tokenActionHud.combat', type: 'system' },
   utility: { id: 'utility', name: 'tokenActionHud.utility', type: 'system' },

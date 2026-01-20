@@ -13,12 +13,13 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
      * @param {string} encodedValue The encoded value
      */
     async handleActionClick (event, encodedValue) {
+      // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
       const [actionTypeId, actionId] = encodedValue.split('|')
 
       const renderable = ['item']
 
       if (renderable.includes(actionTypeId) && this.isRenderItem()) {
-        return this.doRenderItem(this.actor, actionId)
+        return this.renderItem(this.actor, actionId)
       }
 
       const knownCharacters = ['character', 'npc']
@@ -46,7 +47,9 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
      * @param {object} event        The event
      * @param {string} encodedValue The encoded value
      */
-    async handleActionHover (event, encodedValue) {}
+    async handleActionHover (event, encodedValue) {
+      // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
+    }
 
     /**
      * Handle group click

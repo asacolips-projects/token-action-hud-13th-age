@@ -122,6 +122,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
           const img = itemData.img
           const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
           const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
+          // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
           const encodedValue = [actionTypeId, id].join(this.delimiter)
           const cssClass = itemData.type === 'power'
             ? `power ${Utils.getPowerClasses(itemData.system.powerUsage.value)[0]}`
@@ -150,6 +151,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
           const img = itemData.img
           const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
           const listName = name
+          // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
           const encodedValue = [actionTypeId, id].join(this.delimiter)
           const cssClass = `power ${Utils.getPowerClasses(itemData.system.powerUsage.value)[0]}`
 
@@ -231,6 +233,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
           const img = itemData.img
           const actionTypeName = coreModule.api.Utils.i18n(ACTION_TYPE[actionTypeId])
           const listName = `${actionTypeName ? `${actionTypeName}: ` : ''}${name}`
+          // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
           const encodedValue = [actionTypeId, id].join(this.delimiter)
 
           return {
@@ -268,6 +271,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       const abilityActions = Object.entries(abilityTypes).map((abilityType) => {
         const id = abilityType[0];
         const name = abilityType[1].name;
+        // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
         const encodedValue = [actionType, id].join(this.delimiter);
         const cssClass = `power recharge`;
         return {
@@ -295,6 +299,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       const backgroundActions = Object.entries(backgroundTypes).map((backgroundType) => {
         const id = backgroundType[0];
         const name = backgroundType[1].name;
+        // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
         const encodedValue = [actionType, id].join(this.delimiter);
         const cssClass = `power other`;
         return {
@@ -315,7 +320,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
     #buildRecovery() {
       if (this.actors.length === 0) return;
-      
+
       // Recoveries
       const recoveryTypes = {
         recovery: { name: coreModule.api.Utils.i18n('ARCHMAGE.CHARACTER.RESOURCES.recovery')}
@@ -324,6 +329,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         const recoveries = this.actor.system.attributes.recoveries;
         const id = recoveryType[0];
         const name = recoveryType[1].name;
+        // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
         const encodedValue = ['recovery', id].join(this.delimiter);
         const cssClass = `power at-will`;
 
@@ -365,6 +371,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       const restActions = Object.entries(restingTypes).map((restingType) => {
         const id = restingType[0];
         const name = restingType[1].name;
+        // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
         const encodedValue = ['rest', id].join(this.delimiter);
         const cssClass = `power ${restingType[1].usage}`;
         return {
@@ -405,6 +412,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       const actions = Object.entries(combatTypes).map((combatType) => {
         const id = combatType[0];
         const name = combatType[1].name;
+        // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
         const encodedValue = [actionType, id].join(this.delimiter);
         return {
           id,
@@ -424,6 +432,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
       const saveActions = Object.entries(saveTypes).map((saveType) => {
         const id = saveType[0];
         const name = saveType[1].name;
+        // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
         const encodedValue = ['saves', id].join(this.delimiter);
         return {
           id,
@@ -432,19 +441,20 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         }
       });
       this.addActions(saveActions, {id: 'saves', type: 'system'});
-      
+
       const groupData = { id: 'combat', type: 'system' };
       this.addActions(actions, groupData);
     }
 
     #buildEffects() {
       if (this.actors.length !== 1) return;
-      
+
       // Conditions.
       const conditionActions = [];
       CONFIG.statusEffects.forEach((statusEffect) => {
         const id = statusEffect.id;
         const name = coreModule.api.Utils.i18n(statusEffect.name);
+        // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
         const encodedValue = ['condition', id].join(this.delimiter);
         const img = statusEffect?.img ?? statusEffect?.icon;
         const tooltip = game.tokenActionHud13thAge.journals.find(j => j.id == statusEffect.journal)?.description ?? coreModule.api.Utils.i18n(name);
@@ -475,6 +485,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
           const id = effect._id;
           const name = effect.name;
+          // @TODO: refactor https://github.com/Larkinabout/fvtt-token-action-hud-core/wiki/Core-Changes-for-System-Module-Developers#actiononclick-and-actiononhover
           const encodedValue = ['effect', id].join(this.delimiter);
           const img = effect?.img ?? effect?.icon;
           const active = !effect.disabled;
