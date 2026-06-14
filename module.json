@@ -9,11 +9,11 @@
     }
   ],
   "url": "https://github.com/asacolips-projects/token-action-hud-13th-age",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "compatibility": {
-    "minimum": "13",
-    "verified": "13.351",
-    "maximum": "13"
+    "minimum": "14",
+    "verified": "14.363",
+    "maximum": "14"
   },
   "esmodules": [
     "./scripts/init.js"
@@ -39,7 +39,7 @@
         "compatibility": [
           {
             "minimum": "1.35.0",
-            "verified": "1.38.1"
+            "verified": "1.39.1"
           }
         ]
       }
@@ -50,8 +50,8 @@
         "type": "module",
         "compatibility": [
           {
-            "minimum": "2.0.0",
-            "verified": "2.0.16"
+            "minimum": "2.1.0",
+            "verified": "2.1.1"
           }
         ]
       }
@@ -77,7 +77,7 @@
   },
   "socket": false,
   "manifest": "https://github.com/asacolips-projects/token-action-hud-13th-age/releases/latest/download/module.json",
-  "download": "https://github.com/asacolips-projects/token-action-hud-13th-age/releases/download/2.0.0/module.zip",
+  "download": "https://github.com/asacolips-projects/token-action-hud-13th-age/releases/download/2.1.0/module.zip",
   "readme": "https://github.com/asacolips-projects/token-action-hud-13th-age#readme",
   "protected": false,
   "coreTranslation": false,
